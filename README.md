@@ -8,6 +8,8 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 bin/kafka-server-start.sh config/server.properties
 
 #Create a Topic
-bin/kafka-topics.sh --create --topic test-topic --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+bin/kafka-topics.sh --create --topic wikimedia --bootstrap-server 52.6.122.23:9092,34.194.141.114:9092 --partitions 3 --replication-factor 2
 
-kafka-topics.sh --bootstrap-server localhost:9092 --topic demo_java --create --partitions 3 --replication-factor 1
+cd kafka_labs
+python3 producer.py
+python3 consumer.py

@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    container_name: kafdrop
+    ports:
+      - "9000:9000"
+    environment:
+      KAFKA_BROKERCONNECT: "52.6.122.23:9092,34.194.141.114:9092"
+      JVM_OPTS: "-Xms32M -Xmx64M"
+    restart: "no"
