@@ -19,16 +19,19 @@ consumer = KafkaConsumer(
     key_deserializer=lambda x: x.decode('utf-8') if x else None
 )
 
+auth = ('admin','Says1234@')
 # Initialize OpenSearch client
 Client = OpenSearch(
-    hosts=["http://localhost:9200"], 
-    http_compress=True,  
-    timeout=30,  
-    retries=5,
-    use_ssl=False,
-    verify_certs=False,
-    ssl_assert_hostname=False,
-    ssl_show_warn=False
+    hosts=["https://localhost:9200"], 
+    http_compress=True,  # enables gzip compression for request bodies
+    timeout=50,  # sets the timeout for each request
+    max_retries=3,  # sets the maximum number of retries for each request
+    retry_on_timeout=True,  # enables retrying on timeout
+    use_ssl=False,  # disables SSL
+    verify_certs=False,  # disables SSL certificate verification
+    ssl_assert_hostname=False,  # disables hostname verification
+    ssl_show_warn=False,  # disables SSL warnings
+    http_auth=auth # add authentication
 )
 
 INDEX_NAME = "wikimedia_changes"
