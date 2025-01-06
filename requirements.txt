@@ -1,3 +1,4 @@
 kafka-python-ng
 requests
 opensearch-py
+python-dotenv
